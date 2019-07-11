@@ -4,17 +4,24 @@
 #
 Name     : mvn-mesos
 Version  : 1.4.0
-Release  : 1
-URL      : https://repo1.maven.org/maven2/org/apache/mesos/mesos/1.4.0/mesos-1.4.0.jar
-Source0  : https://repo1.maven.org/maven2/org/apache/mesos/mesos/1.4.0/mesos-1.4.0.jar
-Source1  : https://repo1.maven.org/maven2/org/apache/mesos/mesos/1.4.0/mesos-1.4.0.pom
-Summary  : No detailed summary available
+Release  : 2
+URL      : https://github.com/apache/mesos/archive/1.4.0.tar.gz
+Source0  : https://github.com/apache/mesos/archive/1.4.0.tar.gz
+Source1  : https://repo1.maven.org/maven2/org/apache/mesos/mesos/1.4.0/mesos-1.4.0.jar
+Source2  : https://repo1.maven.org/maven2/org/apache/mesos/mesos/1.4.0/mesos-1.4.0.pom
+Summary  : Cluster manager for sharing distributed application frameworks
 Group    : Development/Tools
 License  : Apache-2.0
 Requires: mvn-mesos-data = %{version}-%{release}
+BuildRequires : buildreq-cmake
+BuildRequires : buildreq-distutils3
 
 %description
-No detailed description available
+Mesos MPICH2 framework readme
+--------------------------------------------
+Table of Contents:
+1) Installing MPICH2
+2) Running the Mesos MPICH2 framework
 
 %package data
 Summary: data components for the mvn-mesos package.
@@ -30,10 +37,10 @@ data components for the mvn-mesos package.
 
 %install
 mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.4.0
-cp %{SOURCE0} %{buildroot}/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.4.0
+cp %{SOURCE1} %{buildroot}/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.4.0
 
 mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.4.0
-cp %{SOURCE1} %{buildroot}/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.4.0
+cp %{SOURCE2} %{buildroot}/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.4.0
 
 
 %files
