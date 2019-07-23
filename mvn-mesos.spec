@@ -4,11 +4,12 @@
 #
 Name     : mvn-mesos
 Version  : 1.4.0
-Release  : 2
+Release  : 3
 URL      : https://github.com/apache/mesos/archive/1.4.0.tar.gz
 Source0  : https://github.com/apache/mesos/archive/1.4.0.tar.gz
-Source1  : https://repo1.maven.org/maven2/org/apache/mesos/mesos/1.4.0/mesos-1.4.0.jar
-Source2  : https://repo1.maven.org/maven2/org/apache/mesos/mesos/1.4.0/mesos-1.4.0.pom
+Source1  : https://repo.maven.apache.org/maven2/org/apache/mesos/mesos/1.4.0/mesos-1.4.0-shaded-protobuf.jar
+Source2  : https://repo1.maven.org/maven2/org/apache/mesos/mesos/1.4.0/mesos-1.4.0.jar
+Source3  : https://repo1.maven.org/maven2/org/apache/mesos/mesos/1.4.0/mesos-1.4.0.pom
 Summary  : Cluster manager for sharing distributed application frameworks
 Group    : Development/Tools
 License  : Apache-2.0
@@ -37,10 +38,13 @@ data components for the mvn-mesos package.
 
 %install
 mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.4.0
-cp %{SOURCE1} %{buildroot}/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.4.0
+cp %{SOURCE1} %{buildroot}/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.4.0/mesos-1.4.0-shaded-protobuf.jar
 
 mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.4.0
-cp %{SOURCE2} %{buildroot}/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.4.0
+cp %{SOURCE2} %{buildroot}/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.4.0/mesos-1.4.0.jar
+
+mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.4.0
+cp %{SOURCE3} %{buildroot}/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.4.0/mesos-1.4.0.pom
 
 
 %files
@@ -48,5 +52,6 @@ cp %{SOURCE2} %{buildroot}/usr/share/java/.m2/repository/org/apache/mesos/mesos/
 
 %files data
 %defattr(-,root,root,-)
+/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.4.0/mesos-1.4.0-shaded-protobuf.jar
 /usr/share/java/.m2/repository/org/apache/mesos/mesos/1.4.0/mesos-1.4.0.jar
 /usr/share/java/.m2/repository/org/apache/mesos/mesos/1.4.0/mesos-1.4.0.pom
