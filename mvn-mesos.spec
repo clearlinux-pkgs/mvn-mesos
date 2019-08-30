@@ -4,16 +4,19 @@
 #
 Name     : mvn-mesos
 Version  : 1.4.0
-Release  : 3
+Release  : 4
 URL      : https://github.com/apache/mesos/archive/1.4.0.tar.gz
 Source0  : https://github.com/apache/mesos/archive/1.4.0.tar.gz
 Source1  : https://repo.maven.apache.org/maven2/org/apache/mesos/mesos/1.4.0/mesos-1.4.0-shaded-protobuf.jar
-Source2  : https://repo1.maven.org/maven2/org/apache/mesos/mesos/1.4.0/mesos-1.4.0.jar
-Source3  : https://repo1.maven.org/maven2/org/apache/mesos/mesos/1.4.0/mesos-1.4.0.pom
+Source2  : https://repo1.maven.org/maven2/org/apache/mesos/mesos/1.0.1/mesos-1.0.1.jar
+Source3  : https://repo1.maven.org/maven2/org/apache/mesos/mesos/1.0.1/mesos-1.0.1.pom
+Source4  : https://repo1.maven.org/maven2/org/apache/mesos/mesos/1.4.0/mesos-1.4.0.jar
+Source5  : https://repo1.maven.org/maven2/org/apache/mesos/mesos/1.4.0/mesos-1.4.0.pom
 Summary  : Cluster manager for sharing distributed application frameworks
 Group    : Development/Tools
 License  : Apache-2.0
 Requires: mvn-mesos-data = %{version}-%{release}
+Requires: mvn-mesos-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-distutils3
 
@@ -32,19 +35,38 @@ Group: Data
 data components for the mvn-mesos package.
 
 
+%package license
+Summary: license components for the mvn-mesos package.
+Group: Default
+
+%description license
+license components for the mvn-mesos package.
+
+
 %prep
+%setup -q -n mesos-1.4.0
 
 %build
 
 %install
+mkdir -p %{buildroot}/usr/share/package-licenses/mvn-mesos
+cp 3rdparty/libprocess/LICENSE %{buildroot}/usr/share/package-licenses/mvn-mesos/3rdparty_libprocess_LICENSE
+cp 3rdparty/stout/LICENSE %{buildroot}/usr/share/package-licenses/mvn-mesos/3rdparty_stout_LICENSE
+cp LICENSE %{buildroot}/usr/share/package-licenses/mvn-mesos/LICENSE
 mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.4.0
 cp %{SOURCE1} %{buildroot}/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.4.0/mesos-1.4.0-shaded-protobuf.jar
 
-mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.4.0
-cp %{SOURCE2} %{buildroot}/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.4.0/mesos-1.4.0.jar
+mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.0.1
+cp %{SOURCE2} %{buildroot}/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.0.1/mesos-1.0.1.jar
+
+mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.0.1
+cp %{SOURCE3} %{buildroot}/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.0.1/mesos-1.0.1.pom
 
 mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.4.0
-cp %{SOURCE3} %{buildroot}/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.4.0/mesos-1.4.0.pom
+cp %{SOURCE4} %{buildroot}/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.4.0/mesos-1.4.0.jar
+
+mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.4.0
+cp %{SOURCE5} %{buildroot}/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.4.0/mesos-1.4.0.pom
 
 
 %files
@@ -52,6 +74,14 @@ cp %{SOURCE3} %{buildroot}/usr/share/java/.m2/repository/org/apache/mesos/mesos/
 
 %files data
 %defattr(-,root,root,-)
+/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.0.1/mesos-1.0.1.jar
+/usr/share/java/.m2/repository/org/apache/mesos/mesos/1.0.1/mesos-1.0.1.pom
 /usr/share/java/.m2/repository/org/apache/mesos/mesos/1.4.0/mesos-1.4.0-shaded-protobuf.jar
 /usr/share/java/.m2/repository/org/apache/mesos/mesos/1.4.0/mesos-1.4.0.jar
 /usr/share/java/.m2/repository/org/apache/mesos/mesos/1.4.0/mesos-1.4.0.pom
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/mvn-mesos/3rdparty_libprocess_LICENSE
+/usr/share/package-licenses/mvn-mesos/3rdparty_stout_LICENSE
+/usr/share/package-licenses/mvn-mesos/LICENSE
