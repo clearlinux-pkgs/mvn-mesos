@@ -4,7 +4,7 @@
 #
 Name     : mvn-mesos
 Version  : 1.4.0
-Release  : 4
+Release  : 5
 URL      : https://github.com/apache/mesos/archive/1.4.0.tar.gz
 Source0  : https://github.com/apache/mesos/archive/1.4.0.tar.gz
 Source1  : https://repo.maven.apache.org/maven2/org/apache/mesos/mesos/1.4.0/mesos-1.4.0-shaded-protobuf.jar
